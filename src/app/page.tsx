@@ -1,9 +1,9 @@
-import { AddToast } from "@/components/add-toast";
+import { Sheet } from "@/components/sheet";
 
 export default function Home() {
   return (
     <div className="flex items-center justify-center h-screen">
-      <AddToast />
+      <Sheet />
     </div>
   );
 }
