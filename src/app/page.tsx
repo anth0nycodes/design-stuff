@@ -1,9 +1,9 @@
-import { AnimatedList } from "@/components/animated-list";
+import { AddToast } from "@/components/add-toast";
 
 export default function Home() {
   return (
-    <div className="w-full font-sans py-24 overflow-hidden">
-      <AnimatedList />
+    <div className="flex items-center justify-center h-screen">
+      <AddToast />
     </div>
   );
 }

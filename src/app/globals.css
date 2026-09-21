@@ -3,6 +3,10 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --scale-increment: 0.05;
+  --translate-increment: -13%;
+  --translate-increment-hover: -110%;
+  --card-gap: 0.75rem;
 }
 
 @theme inline {
