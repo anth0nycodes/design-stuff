@@ -1,10 +1,9 @@
-import { ComparisonSlider } from "@/components/comparison-slider";
-import { Sheet } from "@/components/sheet";
+import { VerticalComparisonSlider } from "@/components/vertical-comparison-slider";
 
 export default function Home() {
   return (
     <div className="flex h-screen items-center justify-center">
-      <ComparisonSlider />
+      <VerticalComparisonSlider />
     </div>
   );
 }

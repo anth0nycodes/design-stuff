@@ -9,7 +9,11 @@ import {
 import Image from "next/image";
 import { Code } from "lucide-react";
 
-export function ComparisonSlider() {
+function clamp(value: number, min: number, max: number) {
+  return Math.min(Math.max(value, min), max);
+}
+
+export function HorizontalComparisonSlider() {
   const [isDragging, setIsDragging] = useState(false);
   const [percentage, setPercentage] = useState(50);
   const parentRef = useRef<HTMLDivElement | null>(null);
@@ -19,8 +23,7 @@ export function ComparisonSlider() {
     if (!parent) return;
     const parentRect = parent.getBoundingClientRect();
     const offsetX = x - parentRect.left;
-    const clampedX = Math.min(Math.max(offsetX, 0), parentRect.width);
-    setPercentage((clampedX / parentRect.width) * 100);
+    setPercentage(clamp((offsetX / parentRect.width) * 100, 0, 100));
   };
 
   const handleMouseDown = (e: ReactMouseEvent<HTMLDivElement>) => {
