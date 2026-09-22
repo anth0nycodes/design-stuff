@@ -6,53 +6,44 @@ const clamp = (value: number, min: number, max: number) =>
   Math.min(Math.max(value, min), max);
 
 export function VerticalComparisonSlider() {
-  const parentRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const [sliderY, setSliderY] = useState(50);
   const [percentage, setPercentage] = useState(50);
 
   const updateSliderPosition = (e: MouseEvent<HTMLDivElement>) => {
-    const parent = parentRef.current;
     const content = contentRef.current;
-    if (!parent || !content) return;
-    const parentRect = parent.getBoundingClientRect();
+    if (!content) return;
     const contentRect = content.getBoundingClientRect();
-    const { clientY: y } = e;
-    const parentOffsetY = y - parentRect.top;
-    const contentOffsetY = y - contentRect.top;
-    setSliderY(clamp((parentOffsetY / parentRect.height) * 100, 0, 100));
+    const contentOffsetY = e.clientY - contentRect.top;
     setPercentage(clamp((contentOffsetY / contentRect.height) * 100, 0, 100));
   };
 
   return (
     <div
-      ref={parentRef}
+      ref={contentRef}
       onMouseMove={updateSliderPosition}
-      className="relative grid overflow-clip rounded-xl bg-black px-24 py-48 text-8xl"
+      className="relative grid overflow-clip rounded-xl bg-black text-8xl"
     >
       <div
         style={{
-          top: `${sliderY}%`,
+          top: `${percentage}%`,
         }}
-        className="absolute inset-x-0 h-1 -translate-y-1/2 bg-[#0D99FF90]"
+        className="absolute inset-x-0 z-10 h-1 -translate-y-1/2 bg-[#0D99FF90]"
       />
-      <div ref={contentRef} className="grid">
-        <div
-          style={{
-            clipPath: `inset(${percentage}% 0 0 0)`,
-          }}
-          className="col-start-1 row-start-1"
-        >
-          <SloganOutline className="h-[1em] w-max" />
-        </div>
-        <div
-          style={{
-            clipPath: `inset(0 0 ${100 - percentage}% 0)`,
-          }}
-          className="col-start-1 row-start-1"
-        >
-          <SloganNormal className="h-[1em] w-max" />
-        </div>
+      <div
+        style={{
+          clipPath: `inset(${percentage}% 0 0 0)`,
+        }}
+        className="col-start-1 row-start-1 px-24 py-48"
+      >
+        <SloganOutline className="h-[1em] w-max" />
+      </div>
+      <div
+        style={{
+          clipPath: `inset(0 0 ${100 - percentage}% 0)`,
+        }}
+        className="col-start-1 row-start-1 px-24 py-48"
+      >
+        <SloganNormal className="h-[1em] w-max" />
       </div>
     </div>
   );
