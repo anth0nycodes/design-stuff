@@ -87,7 +87,7 @@ export function Navlinks() {
 
   return (
     <div
-      className="-ml-6 flex min-w-0 scrollbar-none overflow-clip overflow-x-scroll mask-[linear-gradient(to_right,transparent_0%,white_var(--fade-size),white_calc(100%-var(--fade-right)),transparent_100%)] text-sm font-medium [--fade-size:24px] [&::-webkit-scrollbar]:hidden"
+      className="-ml-6 mask-[linear-gradient(to_right,transparent_0%,white_var(--fade-size),white_calc(100%-var(--fade-right)),transparent_100%)] text-sm font-medium [--fade-size:24px]"
       style={{ "--fade-right": atEnd ? "0px" : "24px" } as React.CSSProperties}
     >
       <div
