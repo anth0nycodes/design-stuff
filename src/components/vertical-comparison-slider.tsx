@@ -1,9 +1,7 @@
 "use client";
 
 import { MouseEvent, SVGProps, useRef, useState } from "react";
-
-const clamp = (value: number, min: number, max: number) =>
-  Math.min(Math.max(value, min), max);
+import { clamp } from "@/lib/helpers";
 
 export function VerticalComparisonSlider() {
   const contentRef = useRef<HTMLDivElement>(null);

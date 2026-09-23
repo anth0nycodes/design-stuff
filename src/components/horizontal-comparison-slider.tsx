@@ -8,10 +8,7 @@ import {
 } from "react";
 import Image from "next/image";
 import { Code } from "lucide-react";
-
-function clamp(value: number, min: number, max: number) {
-  return Math.min(Math.max(value, min), max);
-}
+import { clamp } from "@/lib/helpers";
 
 export function HorizontalComparisonSlider() {
   const [isDragging, setIsDragging] = useState(false);
